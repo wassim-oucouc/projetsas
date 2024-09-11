@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1725995087 source:c:\users\wassim\desktop\project-sas\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
