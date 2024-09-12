@@ -176,6 +176,19 @@ void calcule()
 
 }
 
+void    statique()
+{
+    for(int i = 0 ; i < count ; i++)
+    {
+          if(e1[i].note >= 10)
+        {
+        printf("la moyenne general de seuil de 10 ou egal %f",e1[i].note);
+        }
+
+        printf("la nombre total %d",count);
+    }
+}
+
 
 
 
