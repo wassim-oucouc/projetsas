@@ -157,8 +157,10 @@ void    supression()
 
 void calcule()
 {
+    float sommeuniversity = 0;
     int somme = 0;
     int counter = 0;
+    int counteruni = 0;
     char depart[100];
     printf("entrer la departement :");
     scanf("%s",depart);
@@ -169,7 +171,10 @@ void calcule()
         somme = somme + e1[i].note;
           counter++;
 
+
             }
+            sommeuniversity = sommeuniversity+ e1[i].note;
+          counteruni++;
     }
     if(counter > 0)
     {
@@ -178,6 +183,11 @@ void calcule()
     }else
     {
     printf("aucun departement trouver!\n");
+    }
+    if(counteruni > 0)
+    {
+        float moyenuniver = sommeuniversity/counteruni;
+        printf("la moyen general de cette university est :%.2f\n",moyenuniver);
     }
 
 }
@@ -209,8 +219,8 @@ void    statique()
                 {
                    printf("Nom :%s\n",e1[i].nom);
                     printf("prenom :%s\n",e1[i].prenom);
-                   printf("nom de departement :%s_n",e1[i].departement);
-                   printf("%f\n",e1[i].note);
+                   printf("nom de departement :%s\n",e1[i].departement);
+                   printf("la note general :%f\n",e1[i].note);
             }
 }
 }
