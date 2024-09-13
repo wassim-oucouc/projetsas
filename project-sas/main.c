@@ -3,7 +3,7 @@
 #define MAX 100
 #include <string.h>
 
- int count;
+ int count = 0;
  struct datenaissance{
  int    jour;
  int    mois;
@@ -20,8 +20,7 @@ struct datenaissance d;
 char departement[MAX];
 float note;
 };
-
- struct etudiant e1[MAX];
+struct etudiant e1[MAX];
   struct etudiant e2[MAX];
   struct etudiant e3[MAX];
   int   der_numero = 1;
@@ -30,31 +29,25 @@ void    ajoute()
 
 
 
-    printf("entrer combien etudiant vous voulez entrer :");
-    scanf("%d",&count);
-
-    for(int i = 0 ; i < count ; i++)
-    {
 
     printf("entrer le numero unique:");
-    scanf("%d",&e1[i].numero);
+    scanf("%d",&e1[count].numero);
     printf("entrer le nom :");
-    scanf("%s",&e1[i].nom);
+    scanf("%s",&e1[count].nom);
     printf("entrer le prenom :");
-    scanf("%s",&e1[i].prenom);
+    scanf("%s",&e1[count].prenom);
     printf("entrer Date de naissance :");
     printf("jour :");
-     scanf("%d",&e1[i].d.jour);
+     scanf("%d",&e1[count].d.jour);
      printf("mois :");
-    scanf("%d",&e1[i].d.mois);
+    scanf("%d",&e1[count].d.mois);
     printf("annee :");
-     scanf("%d",&e1[i].d.annee);
+     scanf("%d",&e1[count].d.annee);
     printf("entrer la Departement : ");
-    scanf("%s",&e1[i].departement);
+    scanf("%s",&e1[count].departement);
     printf("entrer la note generale :");
-    scanf("%f",&e1[i].note);
+    scanf("%f",&e1[count].note);
 
-}
 }
 
 
@@ -64,6 +57,7 @@ void    afficher()
     printf("vos informations :\n");
     for(int i = 0 ; i < count ; i++)
     {
+        printf("\n");
         printf("le nom : %s\n",e1[i].nom);
         printf("le prenom : %s\n",e1[i].prenom);
         printf("la date de naissance :\n");
@@ -72,6 +66,7 @@ void    afficher()
         printf("la date de annee : %d\n",e1[i].d.annee);
         printf("la departement : %s\n",e1[i].departement);
         printf("la note general est : %f\n",e1[i].note);
+        printf("----------------------------------------------------------------------");
 
 
         }
@@ -188,8 +183,10 @@ void calcule()
 }
 void    statique()
 {
+    float note = 0;
     char departement_jdida[MAX];
     int counter = 0;
+
      printf("la nombre total des etudiant :%d\n",count);
      printf("entrer la departement");
      scanf("%s",departement_jdida);
@@ -202,7 +199,21 @@ void    statique()
 
            }
             printf("le nombre des etudiant sur %s departement est :%d\n",departement_jdida,counter);
-    }
+
+            printf("entrer le seuil :");
+            scanf("%f",&note);
+            printf("les etudiants ayant une moyenne generale superieure a un certain seuil %f\n:",note);
+            for(int i = 0;i < count ; i++)
+            {
+                if(e1[i].note >= note)
+                {
+                   printf("Nom :%s\n",e1[i].nom);
+                    printf("prenom :%s\n",e1[i].prenom);
+                   printf("nom de departement :%s_n",e1[i].departement);
+                   printf("%f\n",e1[i].note);
+            }
+}
+}
 
 
     void    recherche()
@@ -227,8 +238,8 @@ void    statique()
                 printf("la note general de ce etudiant est :%f\n",e1[i].note);
 
             }
+            printf("ce etudiant pas existe!\n");
         }
-        printf("ce etudiant pas existe!\n");
 
         printf("entrer la departement");
         scanf("%s",departement_jdida);
@@ -236,7 +247,7 @@ void    statique()
         {
             if(strcasecmp(departement_jdida,e1[i].departement)==0)
             {
-                printf("les etudiant de cette departement :%s\n %s\n %s\n %d\n",e1[i].nom,e1[i].prenom,e1[i].departement,e1[i].note);
+                printf("les etudiant de cette departement :\n le nom :%s\n le prenom:%s\n le nom de departement :%s\n la note de ce etudiant :%f\n",e1[i].nom,e1[i].prenom,e1[i].departement,e1[i].note);
             }
 
         }
@@ -268,25 +279,33 @@ int main()
     int choix;
     do
      {
-         printf("1. Ajouter un etudiant\n");
-         printf("2. Modifier un etudiant\n");
-         printf("3. afficher un etudiant\n");
-         printf("4. supprimer un etudiant \n");
-         printf("5. moyenne generale\n");
-         printf("6. statistiques\n");
-         printf("7. Rechercher\n");
-         printf("Entrer Votre Choix :\n" );
+
+  printf("******************************************\n");
+    printf("*        GESTION DES ETUDIANTS           *\n");
+    printf("******************************************\n");
+    printf("* 1. Ajouter un etudiant                 *\n");
+    printf("* 2. Modifier un etudiant                *\n");
+    printf("* 3. Afficher un etudiant                *\n");
+    printf("* 4. Supprimer un etudiant               *\n");
+    printf("* 5. Moyenne generale                    *\n");
+    printf("* 6. Statistiques                        *\n");
+    printf("* 7. Rechercher                          *\n");
+    printf("******************************************\n");
+    printf("  Entrer Votre Choix : ");
          scanf("%d",&choix);
              switch(choix)
             {
         case 0 :
        printf("choix incorrect ressayer!!\n");
+       break;
 
         case 1 :
             ajoute();
+            count++;
             break;
         case 2 :
             modifier();
+            break;
 
             break;
         case 3 :
@@ -297,10 +316,13 @@ int main()
             break;
         case 5 :
             calcule();
+            break;
         case 6 :
             statique();
+            break;
         case 7 :
             recherche();
+            break;
 
         }
         } while(choix != 0);
